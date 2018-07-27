@@ -2,10 +2,10 @@
 require 'sass-css-importer'
 
 http_path = "../"
-css_dir = "../css"
+css_dir = "../"
 sass_dir = "../sass"
-images_dir = "../img"
-javascripts_dir = "../js"
+images_dir = "../"
+javascripts_dir = "../"
 relative_assets = true
 
 output_style = :compact
