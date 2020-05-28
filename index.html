@@ -7,7 +7,6 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="manifest" href="/manifest.json">
-	<link rel="stylesheet" href="styles.css?20180727">
 	<link rel="shortcut icon" type="image/ico" href="favicon.ico?20180727">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://charcopy.com/" />
@@ -40,12 +39,12 @@
 		</div>
 		<div class="char" data-search-term="@ mail at">
 			<button class="char-button" data-clipboard-text="@">
-			    @
+				@
 			</button>
 		</div>
 		<div class="char" data-search-term="© copyright">
 			<button class="char-button" data-clipboard-text="©">
-			    &copy;
+				&copy;
 			</button>
 		</div>
 		<div class="char" data-search-term="™ trademark">
@@ -163,6 +162,11 @@
 				»
 			</button>
 		</div>
+		<div class="char" data-search-term="«» quote arrows">
+			<button class="char-button" data-clipboard-text="«»">
+				«»
+			</button>
+		</div>
 		<div class="char" data-search-term="‹ quote lsaquo arrow">
 			<button class="char-button" data-clipboard-text="‹">
 				‹
@@ -232,7 +236,7 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="clipboard.min.js"></script>
-	<script src="functions.js"></script>
+	<script src="functions.js?20180727"></script>
 
 	<script>
 		var clipboard = new ClipboardJS( '.char-button' );
@@ -241,7 +245,7 @@
 			setTimeout(function(){
 				$( '.copy-confirmation' ).removeClass( 'visible' );
 			}, 750);
-		    e.clearSelection();
+			e.clearSelection();
 		});
 	</script>
 
@@ -252,7 +256,7 @@
 		} else {
 
 		//Register the ServiceWorker
-			navigator.serviceWorker.register('sw.js', {
+			navigator.serviceWorker.register('assets/js/sw.min.js', {
 				scope: './'
 			}).then(function(reg) {
 				console.log('Service worker has been registered for scope:'+ reg.scope);
