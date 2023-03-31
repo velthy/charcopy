@@ -16,7 +16,7 @@
 	<link rel="apple-touch-icon-precomposed" href="https://charcopy.com/shruggycon.png?20180727" />
 	<link rel="icon" href="https://charcopy.com/shruggycon.png?20180727">
 	<meta name="theme-color" content="#000" />
-	<link rel="stylesheet" href="styles.css?20230331_" />
+	<link rel="stylesheet" href="styles.css?20230331A" />
 </head>
 <body class="dark-mode color-scheme-yellow">
 
@@ -229,7 +229,9 @@
 		</div>
 	</div>
 
-	<div class="copy-confirmation"></div>
+	<div class="copy-confirmation">
+		<div class="copy-confirmation-inner"></div>
+	</div>
 
 	<footer class="site-footer">
 		<div class="credits">
@@ -289,12 +291,12 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="clipboard.min.js"></script>
-	<script src="functions.js?20230331"></script>
+	<script src="functions.js?20230331_"></script>
 
 	<script>
 		var clipboard = new ClipboardJS( '.char-button' );
 		clipboard.on('success', function(e) {
-			$( '.copy-confirmation' ).addClass( 'visible' ).show().html( '<span class="character">' + e.text + '</span><span class="message">copied to clipboard</span>' );
+			$( '.copy-confirmation' ).addClass( 'visible' ).show().find( '.copy-confirmation-inner' ).html( '<span class="character">' + e.text + '</span><span class="message">copied to clipboard</span>' );
 			setTimeout(function(){
 				$( '.copy-confirmation' ).removeClass( 'visible' );
 				$( 'input[type="search"]' ).focus();

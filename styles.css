@@ -360,20 +360,49 @@ input[type="search"]::-webkit-search-results-decoration {
 	justify-content: center;
 	padding: 0.625em;
 	text-align: center;
-	background: var( --color__box );
+	background: rgba(0, 0, 0, 0.75 );
+	backdrop-filter: blur( 10px );
 	color: var( --color__highlight );
 	transition: all var( --transition__default );
 }
 
+.copy-confirmation-inner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding: calc( 2 * var( --card__spacing ) );
+	background: var( --color__body );
+	border-radius: var( --border__radius );
+	transform: translate3d( -50%, -50%, 0 );
+}
+
+@media screen and (max-width: 799px) and (orientation: portrait) {
+	.copy-confirmation-inner {
+		top: auto;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		border-radius: var( --border__radius ) var( --border__radius ) 0 0;
+		transform: translate3d( 0, 0, 0 );
+	}
+}
+
+.copy-confirmation-inner::before {
+	content: " ";
+	position: absolute;
+	inset: 0;
+	opacity: 0.5;
+	box-shadow: 0 0 200px var( --color__highlight );
+}
+
 .copy-confirmation.visible {
 	visibility: visible;
-	opacity: .95;
+	opacity: 1;
 	z-index: 11;
-	transform: translate3d( 0, 0, 0 );
 }
 
 .copy-confirmation .character {
-	font-size: calc( 2em + 2vw + 2vh );
+	font-size: calc( 2rem + 2vw );
 }
 
 .copy-confirmation .message {
