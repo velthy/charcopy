@@ -5,7 +5,7 @@
 	"lang": "en",
 	"name": "Charcopy",
 	"scope": "/",
-	"theme_color": "#FFE700",
+	"theme_color": "#000000",
 	"description": "How can you get this shrug emoticon on your keyboard? Or this backslash thing? Look no further, this site got you covered.",
 	"orientation": "any",
 	"background_color": "#161616",
@@ -13,14 +13,20 @@
 	"prefer_related_applications": false,
 	"icons": [
 		{
-			"src": "/shruggycon.png",
+			"src": "shruggy-icon.png",
 			"type": "image/png",
 			"sizes": "512x512"
 		},
 		{
-			"src": "/assets/img/shruggycon.png",
+			"src": "shruggy-icon.png",
 			"type": "image/png",
 			"sizes": "192x192"
+		},
+		{
+			"src": "shruggy-icon-maskable.png",
+			"sizes": "196x196",
+			"type": "image/png",
+			"purpose": "any maskable"
 		}
 	]
 }

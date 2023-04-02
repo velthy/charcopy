@@ -90,6 +90,15 @@ const colorOptions = {
 	pink: 'color-scheme-pink'
 };
 
+// Define the favicon options
+const faviconOptions = {
+	yellow: 'favicon-yellow.ico',
+	green: 'favicon-green.ico',
+	blue: 'favicon-blue.ico',
+	purple: 'favicon-purple.ico',
+	pink: 'favicon-pink.ico'
+};
+
 // check if there is a color preference stored in localStorage
 const colorPref = localStorage.getItem( 'colorPref' );
 
@@ -105,6 +114,8 @@ Object.keys(colorOptions).forEach(color => {
 	button.addEventListener('click', () => {
 		setTheme(colorOptions[color]);
 		localStorage.setItem('colorPref', color);
+		updateFavicon( color );
+
 		Object.keys(colorOptions).forEach(otherColor => {
 			const otherButton = document.getElementById(`${otherColor}-button`);
 			if (color === otherColor) {
@@ -135,23 +146,46 @@ function setTheme(theme) {
 	});
 }
 
+// Update the favicon according to the current color
+function updateFavicon(color) {
+	const favicon = document.querySelector("link[rel*='icon']");
+	favicon.href = faviconOptions[color];
+}
+
+// Update the initial favicon
+updateFavicon(colorPref ? colorPref : 'yellow');
+
 // Copy characters to clipboard
 var charButtons = document.querySelectorAll( '.char-button' );
-charButtons.forEach(function(button) {
-	button.addEventListener('click', function() {
-		var charText = this.getAttribute( 'data-clipboard-text' );
-		navigator.clipboard.writeText(charText).then(function() {
-			var confirmationText = '<span class="character">' + charText + '</span>' +
+charButtons.forEach(function (button) {
+	button.addEventListener('click', function () {
+		var charText = this.getAttribute('data-clipboard-text');
+		navigator.clipboard.writeText(charText).then(function () {
+		var confirmationText = '<span class="character">' + charText + '</span>' +
 			'<span class="message"> copied to clipboard</span>';
-			var confirmationElement = document.getElementById( 'confirmation-message' );
-			var confirmationInnerElement = confirmationElement.querySelector( '.copy-confirmation-inner' );
-			confirmationInnerElement.innerHTML = confirmationText;
-			confirmationElement.classList.add( 'visible' );
-			setTimeout(function() {
-				confirmationElement.classList.remove( 'visible' );
-			}, 750); // Remove "visible" class after 750 mms
-		}, function() {
-		console.error( 'Failed to copy to clipboard' );
+		var confirmationElement = document.getElementById('confirmation-message');
+		var confirmationInnerElement = confirmationElement.querySelector('.copy-confirmation-inner');
+		confirmationInnerElement.innerHTML = confirmationText;
+		confirmationElement.classList.add('visible');
+		setTimeout(function () {
+			confirmationElement.classList.remove('visible');
+		}, 750); // Remove "visible" class after 750 ms
+		}).catch(function () {
+		console.error('Failed to copy to clipboard');
 		});
 	});
+});
+
+// Offline Mode
+document.addEventListener('DOMContentLoaded', () => {
+	function updateOnlineStatus() {
+		if (navigator.onLine) {
+			document.body.classList.remove('offline-mode');
+		} else {
+		document.body.classList.add('offline-mode');
+		}
+	}
+	window.addEventListener('online', updateOnlineStatus);
+	window.addEventListener('offline', updateOnlineStatus);
+	updateOnlineStatus();
 });
