@@ -16,7 +16,7 @@
 	<link rel="apple-touch-icon-precomposed" href="https://charcopy.com/shruggycon.png?20180727" />
 	<link rel="icon" href="https://charcopy.com/shruggycon.png?20180727">
 	<meta name="theme-color" content="#000" />
-	<link rel="stylesheet" href="styles.css?20230331A" />
+	<link rel="stylesheet" href="styles.css?20230331-Blubby" />
 </head>
 <body class="dark-mode color-scheme-yellow">
 
@@ -229,7 +229,7 @@
 		</div>
 	</div>
 
-	<div class="copy-confirmation">
+	<div class="copy-confirmation" id="confirmation-message">
 		<div class="copy-confirmation-inner"></div>
 	</div>
 
@@ -254,33 +254,33 @@
 					</span>
 				</label>
 			</div>
-			<ul class="color-scheme-selector">
+			<ul id="theme-toggle" class="color-scheme-selector">
 				<li>
-					<button data-color-scheme="color-scheme-yellow" class="current color-yellow">
+					<button id="yellow-button" data-color-scheme="color-scheme-yellow" class="current color-yellow">
 						<span class="color-scheme-selector-swatch"></span>
 						<span class="color-scheme-selector-name">Yellow</span>
 					</button>
 				</li>
 				<li>
-					<button data-color-scheme="color-scheme-green" class="color-green">
+					<button id="green-button" data-color-scheme="color-scheme-green" class="color-green">
 						<span class="color-scheme-selector-swatch"></span>
 						<span class="color-scheme-selector-name">Green</span>
 					</button>
 				</li>
 				<li>
-					<button data-color-scheme="color-scheme-blue" class="color-blue">
+					<button id="blue-button" data-color-scheme="color-scheme-blue" class="color-blue">
 						<span class="color-scheme-selector-swatch"></span>
 						<span class="color-scheme-selector-name">Blue</span>
 					</button>
 				</li>
 				<li>
-					<button data-color-scheme="color-scheme-purple" class="color-purple">
+					<button id="purple-button" data-color-scheme="color-scheme-purple" class="color-purple">
 						<span class="color-scheme-selector-swatch"></span>
 						<span class="color-scheme-selector-name">Purple</span>
 					</button>
 				</li>
 				<li>
-					<button data-color-scheme="color-scheme-pink" class="color-pink">
+					<button id="pink-button" data-color-scheme="color-scheme-pink" class="color-pink">
 						<span class="color-scheme-selector-swatch"></span>
 						<span class="color-scheme-selector-name">Pink</span>
 					</button>
@@ -289,21 +289,7 @@
 		</div>
 	</footer>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="clipboard.min.js"></script>
-	<script src="functions.js?20230331_"></script>
-
-	<script>
-		var clipboard = new ClipboardJS( '.char-button' );
-		clipboard.on('success', function(e) {
-			$( '.copy-confirmation' ).addClass( 'visible' ).show().find( '.copy-confirmation-inner' ).html( '<span class="character">' + e.text + '</span><span class="message">copied to clipboard</span>' );
-			setTimeout(function(){
-				$( '.copy-confirmation' ).removeClass( 'visible' );
-				$( 'input[type="search"]' ).focus();
-			}, 750);
-			e.clearSelection();
-		});
-	</script>
+	<script src="functions.js?VanillaStyle"></script>
 
 	<script>
 		//Add this below content to your HTML page, or add the js file to your page at the very top to register service worker

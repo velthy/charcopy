@@ -1,89 +1,157 @@
-/**
- * Here goes all the JS Code you need in your child theme buddy!
- */
-(function($) {
-	$( 'input[type="search"]' ).focus();
+// Set focus on the search input
+document.querySelector('input[type="search"]').focus();
 
-	$( 'input[type="search"]' ).on( 'keyup', function(){
-		var search_term = $( this ).val().toLowerCase();
-		$('.char-cards .char').each(function(){
-			if ( $( this ).filter( '[data-search-term *= ' + search_term + ']').length > 0 || search_term.length < 1) {
-				$(this).show();
+// Reset the search when the reset button is clicked
+document.addEventListener('click', function(e) {
+	if (e.target.matches('.reset-search')) {
+		document.querySelector('input[type="search"]').value = '';
+		document.querySelectorAll('.char-cards .char').forEach(function(char) {
+			char.style.display = 'block';
+	    });
+		e.target.classList.add('hidden');
+	    e.preventDefault();
+  	}
+});
+
+// Listen for key events to activate search input
+document.addEventListener('keyup', function(e) {
+	if (e.keyCode === 83 || e.keyCode === 70) { // s(earch), f(ind), or esc
+		if (document.querySelector('input[type="search"]') !== document.activeElement) {
+			document.querySelector('input[type="search"]').value = '';
+			document.querySelector('input[type="search"]').focus();
+		}
+	}
+	if (e.keyCode === 27) { // esc
+		document.querySelector('input[type="search"]').value = '';
+		document.querySelector('input[type="search"]').focus();
+	}
+});
+
+
+document.querySelectorAll('input[type="search"]').forEach(function(input) {
+	input.addEventListener('keyup', function() {
+	  var search_term = this.value.toLowerCase();
+		document.querySelectorAll('.char-cards .char').forEach(function(char) {
+			if (char.getAttribute('data-search-term').toLowerCase().includes(search_term) || search_term.length < 1) {
+				char.style.display = 'block';
 			} else {
-				$(this).hide();
+				char.style.display = 'none';
 			}
 		});
-		$( 'html, body' ).scrollTop(0);
-		if ( ! $( this ).val() == '' ) {
-			$( '.reset-search ').removeClass( 'hidden' );
+		window.scrollTo(0, 0);
+		if (this.value !== '') {
+			document.querySelector('.reset-search').classList.remove('hidden');
 		}
 	});
-
-	$(document).on('click', '.reset-search', function(e){
-		$( 'input[type="search"]' ).val('').focus();
-		$('.char-cards .char').show();
-		$( this ).addClass( 'hidden' );
-		e.preventDefault();
-	});
-
-	$(document).keyup(function(e) {
-		if ( e.keyCode === 83 || e.keyCode === 70 ) { // s(earch), f(ind), or esc
-			if ( ! $( 'input[type="search"]' ).is( ':focus' ) ) {
-				$( 'input[type="search"]' ).val('').focus();
-			}
-		}
-		if ( e.keyCode === 27 ) { esc
-			$( 'input[type="search"]' ).val('').focus();
-		}
-	});
-
-	$(document).on('click', '.color-scheme-selector button', function(e){
-		var color_scheme = $( this ).attr( 'data-color-scheme');
-		$( 'body' ).removeClass( 'color-scheme-yellow color-scheme-green color-scheme-blue color-scheme-purple color-scheme-pink' ).addClass( color_scheme );
-		$( '.color-scheme-selector button' ).removeClass( 'current' );
-		$( this ).addClass( 'current' );
-		e.preventDefault();
-	});
-}(jQuery));
-
+});
 
 /**
  * Darkmode.
  */
 
-( () => {
-	const themeToggle = document.getElementById( 'dark-mode-toggle' );
-	if ( ! themeToggle ) {
-		return;
+(() => {
+	const modeToggle = document.getElementById('dark-mode-toggle');
+	if (!modeToggle) {
+	  return;
 	}
 
-	let activeTheme = false;
-	if ( document.cookie.split( ';' ).some( ( item ) => item.trim().startsWith( 'charcopy-theme=' ) ) ) {
-		activeTheme = document.cookie.split( '; ' ).find( row => row.startsWith( 'charcopy-theme=' ) ).split( '=' )[1];
-	}
+	let activeMode = localStorage.getItem('charcopy-mode');
 
-	const setTheme = ( isDark ) => {
-		document.cookie = `charcopy-theme=${ isDark ? 'dark' : 'light' }; path=/`;
-		themeToggle.checked = isDark ? true : false;
-		if ( isDark ) {
-			document.body.classList.add( 'dark-mode');
-			document.body.classList.remove( 'light-mode');
-		} else {
-			document.body.classList.add( 'light-mode');
-			document.body.classList.remove( 'dark-mode');
-		}
+	const setMode = (isDark) => {
+	  localStorage.setItem('charcopy-mode', isDark ? 'dark' : 'light');
+	  modeToggle.checked = isDark ? true : false;
+	  if (isDark) {
+		document.body.classList.add('dark-mode');
+		document.body.classList.remove('light-mode');
+	  } else {
+		document.body.classList.add('light-mode');
+		document.body.classList.remove('dark-mode');
+	  }
 	};
 
-	// When no theme was set, get current system default.
-	if ( false === activeTheme ) {
-		activeTheme = window.matchMedia( '(prefers-color-scheme: dark)' ).matches ? 'dark' : 'light';
+	// When no mode was set, get current system default.
+	if (!activeMode) {
+	  activeMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 	}
+	// Set mode based on localStorage or default system setting.
+	setMode('dark' === activeMode);
+	// Set mode based on toggle.
+	modeToggle.addEventListener('click', (e) => {
+	  setMode(e.target.checked);
+	});
+})();
 
-	// Set theme based on localStorage or default system setting.
-	setTheme( 'dark' === activeTheme );
+// define the color options
+const colorOptions = {
+	yellow: 'color-scheme-yellow',
+	green: 'color-scheme-green',
+	blue: 'color-scheme-blue',
+	purple: 'color-scheme-purple',
+	pink: 'color-scheme-pink'
+};
 
-	// Set theme based on toggle.
-	themeToggle.addEventListener( 'click', ( e ) => {
-		setTheme( e.target.checked );
-	} );
-} )();
+// check if there is a color preference stored in localStorage
+const colorPref = localStorage.getItem( 'colorPref' );
+
+// if there is a color preference, use it, otherwise use the default color
+const initialColor = colorPref ? colorOptions[colorPref] : colorOptions.yellow;
+
+// set the initial color
+setTheme( initialColor );
+
+// attach event listeners to the color switcher buttons
+Object.keys(colorOptions).forEach(color => {
+	const button = document.getElementById(`${color}-button`);
+	button.addEventListener('click', () => {
+		setTheme(colorOptions[color]);
+		localStorage.setItem('colorPref', color);
+		Object.keys(colorOptions).forEach(otherColor => {
+			const otherButton = document.getElementById(`${otherColor}-button`);
+			if (color === otherColor) {
+				otherButton.classList.add('current');
+			} else {
+				otherButton.classList.remove('current');
+			}
+		});
+	});
+});
+
+// set the theme of the page
+function setTheme(theme) {
+	document.body.classList.forEach(className => {
+		if (className.startsWith( 'color-scheme-' )) {
+		  document.body.classList.remove(className);
+		}
+	  });
+	document.body.classList.add(theme);
+
+	Object.keys(colorOptions).forEach(color => {
+		const button = document.getElementById(`${color}-button`);
+		if (theme === colorOptions[color]) {
+			button.classList.add('current');
+		} else {
+			button.classList.remove('current');
+		}
+	});
+}
+
+// Copy characters to clipboard
+var charButtons = document.querySelectorAll( '.char-button' );
+charButtons.forEach(function(button) {
+	button.addEventListener('click', function() {
+		var charText = this.getAttribute( 'data-clipboard-text' );
+		navigator.clipboard.writeText(charText).then(function() {
+			var confirmationText = '<span class="character">' + charText + '</span>' +
+			'<span class="message"> copied to clipboard</span>';
+			var confirmationElement = document.getElementById( 'confirmation-message' );
+			var confirmationInnerElement = confirmationElement.querySelector( '.copy-confirmation-inner' );
+			confirmationInnerElement.innerHTML = confirmationText;
+			confirmationElement.classList.add( 'visible' );
+			setTimeout(function() {
+				confirmationElement.classList.remove( 'visible' );
+			}, 750); // Remove "visible" class after 750 mms
+		}, function() {
+		console.error( 'Failed to copy to clipboard' );
+		});
+	});
+});
