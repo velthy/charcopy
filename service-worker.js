@@ -6,8 +6,8 @@ self.addEventListener('install', (event) => {
 		caches.open(CACHE_NAME).then((cache) => {
 			return cache.addAll([
 				OFFLINE_URL,
-				'styles.css?20240403',
-				'functions.js?20240403',
+				'styles.css?20240403H',
+				'functions.js?20240403H',
 				'manifest.json',
 			]);
 		})
