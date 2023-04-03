@@ -50,34 +50,50 @@ document.querySelectorAll('input[type="search"]').forEach(function(input) {
  */
 
 (() => {
-	const modeToggle = document.getElementById('dark-mode-toggle');
+	const modeToggle = document.getElementById( 'dark-mode-toggle' );
 	if (!modeToggle) {
 	  return;
 	}
 
-	let activeMode = localStorage.getItem('charcopy-mode');
+	let activeMode = localStorage.getItem( 'charcopy-mode' );
 
-	const setMode = (isDark) => {
-	  localStorage.setItem('charcopy-mode', isDark ? 'dark' : 'light');
-	  modeToggle.checked = isDark ? true : false;
-	  if (isDark) {
-		document.body.classList.add('dark-mode');
-		document.body.classList.remove('light-mode');
-	  } else {
-		document.body.classList.add('light-mode');
-		document.body.classList.remove('dark-mode');
-	  }
+	const setMode = (isDark, isUserTriggered) => {
+		localStorage.setItem('charcopy-mode', isDark ? 'dark' : 'light');
+		modeToggle.checked = isDark ? true : false;
+
+		const applyModeClasses = () => {
+			if (isDark) {
+				document.body.classList.add( 'dark-mode' );
+				document.body.classList.remove( 'light-mode' );
+			} else {
+				document.body.classList.add( 'light-mode' );
+				document.body.classList.remove( 'dark-mode' );
+			}
+		};
+
+		if (isUserTriggered) {
+			document.body.classList.add( 'mode-switching' );
+			setTimeout(() => {
+				document.body.classList.remove( 'mode-switching' );
+			}, 2000);
+
+			setTimeout( applyModeClasses, 200 );
+		} else {
+			applyModeClasses();
+		}
 	};
 
 	// When no mode was set, get current system default.
 	if (!activeMode) {
-	  activeMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+		activeMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 	}
+
 	// Set mode based on localStorage or default system setting.
-	setMode('dark' === activeMode);
+	setMode('dark' === activeMode, false);
+
 	// Set mode based on toggle.
 	modeToggle.addEventListener('click', (e) => {
-	  setMode(e.target.checked);
+		setMode(e.target.checked, true);
 	});
 })();
 
