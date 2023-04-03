@@ -7,16 +7,16 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="manifest" href="/manifest.json">
-	<link rel="shortcut icon" type="image/ico" href="favicon.ico?20240402D">
+	<link rel="shortcut icon" type="image/ico" href="favicon.ico?20240403">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://charcopy.com/" />
 	<meta property="og:title" content="Charcopy: Get your special characters">
 	<meta property="og:description" content="How can you get this shrug emoticon on your keyboard? Or this backslash thing? Look no further, this site got you covered.">
-	<meta property="og:image" content="https://charcopy.com/shruggy-cover.png?20240402D" />
-	<link rel="apple-touch-icon-precomposed" href="https://charcopy.com/shruggy-icon.png?20240402D" />
-	<link rel="icon" href="https://charcopy.com/shruggy-icon.png?20240402D">
+	<meta property="og:image" content="https://charcopy.com/shruggy-cover.png?20240403" />
+	<link rel="apple-touch-icon-precomposed" href="https://charcopy.com/shruggy-icon.png?20240403" />
+	<link rel="icon" href="https://charcopy.com/shruggy-icon.png?20240403">
 	<meta name="theme-color" content="#000" />
-	<link rel="stylesheet" href="styles.css?20240402D" />
+	<link rel="stylesheet" href="styles.css?20240403" />
 </head>
 <body class="dark-mode color-scheme-yellow">
 
@@ -25,7 +25,7 @@
 	</header>
 
 	<div class="char-search">
-		<button class="reset-search">Reset</button>
+		<button class="reset-search"><span class="screen-reader-text">Reset</span></button>
 		<label for="search-term" class="screen-reader-text">Search</label>
 		<input type="search" id="search-term" placeholder="Search for Character, e.g. copyright">
 	</div>
@@ -293,11 +293,11 @@
 		</div>
 	</footer>
 
-	<script src="functions.js?20240402D" async></script>
+	<script src="functions.js?20240403"></script>
 	<script>
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', () => {
-			navigator.serviceWorker.register('service-worker.js')
+			navigator.serviceWorker.register('service-worker.js?20240403')
 				.then((registration) => {
 					console.log('Service Worker registered with scope:', registration.scope);
 				})

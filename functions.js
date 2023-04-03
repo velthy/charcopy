@@ -7,9 +7,9 @@ document.addEventListener('click', function(e) {
 		document.querySelector('input[type="search"]').value = '';
 		document.querySelectorAll('.char-cards .char').forEach(function(char) {
 			char.style.display = 'block';
-	    });
+		});
 		e.target.classList.add('hidden');
-	    e.preventDefault();
+		e.preventDefault();
   	}
 });
 
@@ -179,12 +179,27 @@ charButtons.forEach(function (button) {
 // Offline Mode
 document.addEventListener('DOMContentLoaded', () => {
 	function updateOnlineStatus() {
-		if (navigator.onLine) {
-			document.body.classList.remove('offline-mode');
+		const offlineTextDiv = document.querySelector('.offline-text');
+		const body = document.body;
+
+	 	if (navigator.onLine) {
+			body.classList.remove('offline-mode');
+			// Remove the offline-text div when online
+			if (offlineTextDiv && body) {
+				body.removeChild(offlineTextDiv);
+			}
 		} else {
-		document.body.classList.add('offline-mode');
+			body.classList.add('offline-mode');
+			// Add the offline-text div when offline
+			if (!offlineTextDiv && body) {
+				const newOfflineTextDiv = document.createElement('div');
+				newOfflineTextDiv.classList.add('offline-text');
+				newOfflineTextDiv.innerText = 'You are offline. But no worries, the app still works!';
+				body.insertBefore(newOfflineTextDiv, body.firstChild);
+			}
 		}
 	}
+
 	window.addEventListener('online', updateOnlineStatus);
 	window.addEventListener('offline', updateOnlineStatus);
 	updateOnlineStatus();
