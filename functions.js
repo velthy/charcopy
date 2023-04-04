@@ -75,9 +75,9 @@ document.querySelectorAll('input[type="search"]').forEach(function(input) {
 			document.body.classList.add( 'mode-switching' );
 			setTimeout(() => {
 				document.body.classList.remove( 'mode-switching' );
-			}, 2000);
+			}, 1000);
 
-			setTimeout( applyModeClasses, 200 );
+			setTimeout( applyModeClasses, 400 );
 		} else {
 			applyModeClasses();
 		}
@@ -128,9 +128,17 @@ setTheme( initialColor );
 Object.keys(colorOptions).forEach(color => {
 	const button = document.getElementById(`${color}-button`);
 	button.addEventListener('click', () => {
-		setTheme(colorOptions[color]);
 		localStorage.setItem('colorPref', color);
 		updateFavicon( color );
+
+		setTimeout(() => {
+			setTheme(colorOptions[color]);
+		}, 400);
+
+		document.body.classList.add( 'mode-switching' );
+		setTimeout(() => {
+			document.body.classList.remove( 'mode-switching' );
+		}, 1000);
 
 		Object.keys(colorOptions).forEach(otherColor => {
 			const otherButton = document.getElementById(`${otherColor}-button`);
@@ -149,7 +157,7 @@ function setTheme(theme) {
 		if (className.startsWith( 'color-scheme-' )) {
 		  document.body.classList.remove(className);
 		}
-	  });
+	});
 	document.body.classList.add(theme);
 
 	Object.keys(colorOptions).forEach(color => {
@@ -187,7 +195,7 @@ charButtons.forEach(function (button) {
 			confirmationElement.classList.remove('visible');
 		}, 750); // Remove "visible" class after 750 ms
 		}).catch(function () {
-		console.error('Failed to copy to clipboard');
+			console.error('Failed to copy to clipboard');
 		});
 	});
 });

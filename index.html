@@ -7,16 +7,16 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="manifest" href="/manifest.json">
-	<link rel="shortcut icon" type="image/ico" href="favicon.ico?20240403H">
+	<link rel="shortcut icon" type="image/ico" href="favicon.ico?20240404B">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://charcopy.com/" />
 	<meta property="og:title" content="Charcopy: Get your special characters">
 	<meta property="og:description" content="How can you get this shrug emoticon on your keyboard? Or this backslash thing? Look no further, this site got you covered.">
-	<meta property="og:image" content="https://charcopy.com/shruggy-cover.png?20240403H" />
-	<link rel="apple-touch-icon-precomposed" href="https://charcopy.com/shruggy-icon.png?20240403H" />
-	<link rel="icon" href="https://charcopy.com/shruggy-icon.png?20240403H">
+	<meta property="og:image" content="https://charcopy.com/shruggy-cover.png?20240404B" />
+	<link rel="apple-touch-icon" href="https://charcopy.com/shruggy-icon.png?20240404B" />
+	<link rel="icon" href="https://charcopy.com/shruggy-icon.png?20240404B">
 	<meta name="theme-color" content="#000" />
-	<link rel="stylesheet" href="styles.css?20240403H" />
+	<link rel="stylesheet" href="styles.css?20240404B" />
 </head>
 <body class="dark-mode color-scheme-yellow">
 
@@ -31,7 +31,7 @@
 	</div>
 
 	<div class="char-cards-wrap">
-		<div class="char-cards">
+		<div class="char-cards" id="characters-container">
 
 			<div class="char shrug" data-search-term="shrug">
 				<button class="char-button" data-clipboard-text="¯\_(ツ)_/¯">
@@ -53,9 +53,9 @@
 					&trade;
 				</button>
 			</div>
-			<div class="char" data-search-term="® reg">
+			<div class="char" data-search-term="® reg right">
 				<button class="char-button" data-clipboard-text="®">
-					&reg;
+					®
 				</button>
 			</div>
 			<div class="char" data-search-term="€ euro money currency">
@@ -65,7 +65,7 @@
 			</div>
 			<div class="char" data-search-term="$ dollar money currency">
 				<button class="char-button" data-clipboard-text="$">
-					&dollar;
+					$
 				</button>
 			</div>
 			<div class="char" data-search-term="| pipe line">
@@ -228,6 +228,11 @@
 					•
 				</button>
 			</div>
+			<div class="char" data-search-term="ç c french">
+				<button class="char-button" data-clipboard-text="ç">
+					ç
+				</button>
+			</div>
 		</div>
 	</div>
 
@@ -308,11 +313,11 @@
 		<div class="mode-switcher-overlay-bg"></div>
 	</div>
 
-	<script src="functions.js?20240403H"></script>
+	<script src="functions.js?20240404B"></script>
 	<script>
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', () => {
-			navigator.serviceWorker.register('service-worker.js?20240403H')
+			navigator.serviceWorker.register('service-worker.js?20240404B')
 				.then((registration) => {
 					console.log('Service Worker registered with scope:', registration.scope);
 				})
