@@ -271,8 +271,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const clearCacheButton = document.querySelector( "#clear-cache-button" );
 
+if (
+	window.location.search === "?debug" ||
+	window.location.search === "?cache" ||
+window.location.search === "?clear"
+) {
+	clearCacheButton.style.display = "block";
+}
+
 clearCacheButton.addEventListener("click", function() {
 	caches.delete( "offline-cache" ).then(function() {
 		console.log("Cache cleared successfully");
+		window.location.reload();
+		window.location.search = "";
 	});
 });
