@@ -186,27 +186,60 @@ updateFavicon(colorPref ? colorPref : 'yellow');
 const charactersContainer = document.querySelector( "#characters-container" );
 const loadingMessage = document.querySelector( "#loading-message" );
 
+function renderCharacters(characters) {
+	loadingMessage.style.display = "none";
+	charactersContainer.classList.remove( "loading" );
+
+	characters.forEach(character => {
+		const charElement = document.createElement("div");
+		charElement.classList.add("char");
+		if (character.searchTerm === "shrug") {
+			charElement.classList.add("shrug");
+		}
+		charElement.setAttribute("data-search-term", character.searchTerm);
+
+		const charButton = document.createElement("button");
+		charButton.classList.add("char-button");
+		charButton.setAttribute("data-clipboard-text", character.clipboardText);
+		charButton.innerHTML = character.character;
+
+		charElement.appendChild(charButton);
+		charactersContainer.appendChild(charElement);
+	});
+}
 fetch( "characters.json" )
-	.then(response => response.json())
+	.then(response => {
+		if (response.ok) {
+			return response.json();
+		} else {
+			throw new Error('Network response was not ok');
+		}
+	})
 	.then(characters => {
-		loadingMessage.style.display = "none";
-		charactersContainer.classList.remove( "loading" );
+		// Cache the characters.json file
+		caches.open('offline-cache').then(cache => {
+			cache.put('characters.json', new Response(JSON.stringify(characters)));
+		});
 
-		characters.forEach(character => {
-			const charElement = document.createElement("div");
-			charElement.classList.add("char");
-			if (character.searchTerm === "shrug") {
-				charElement.classList.add("shrug");
+		// Render the characters on the page
+		renderCharacters(characters);
+	})
+	.catch(error => {
+		console.log('Fetch error:', error);
+
+		// If the user is offline, try to get the characters.json file from the cache
+		caches.match('characters.json').then(response => {
+			if (response) {
+				return response.json();
 			}
-			charElement.setAttribute("data-search-term", character.searchTerm);
-
-			const charButton = document.createElement("button");
-			charButton.classList.add("char-button");
-			charButton.setAttribute("data-clipboard-text", character.clipboardText);
-			charButton.innerHTML = character.character;
-
-			charElement.appendChild(charButton);
-			charactersContainer.appendChild(charElement);
+		}).then(characters => {
+			// If the characters are found in the cache, render them on the page
+			if (characters) {
+				renderCharacters(characters);
+			} else {
+				// If the characters are not found in the cache, display an error message
+				loadingMessage.innerHTML = "Unable to load characters";
+			}
 		});
 	});
 
@@ -274,7 +307,7 @@ const clearCacheButton = document.querySelector( "#clear-cache-button" );
 if (
 	window.location.search === "?debug" ||
 	window.location.search === "?cache" ||
-window.location.search === "?clear"
+	window.location.search === "?clear"
 ) {
 	clearCacheButton.style.display = "block";
 }
