@@ -179,25 +179,63 @@ function updateFavicon(color) {
 // Update the initial favicon
 updateFavicon(colorPref ? colorPref : 'yellow');
 
-// Copy characters to clipboard
-var charButtons = document.querySelectorAll( '.char-button' );
-charButtons.forEach(function (button) {
-	button.addEventListener('click', function () {
-		var charText = this.getAttribute('data-clipboard-text');
-		navigator.clipboard.writeText(charText).then(function () {
-		var confirmationText = '<span class="character">' + charText + '</span>' +
-			'<span class="message"> copied to clipboard</span>';
-		var confirmationElement = document.getElementById('confirmation-message');
-		var confirmationInnerElement = confirmationElement.querySelector('.copy-confirmation-inner');
-		confirmationInnerElement.innerHTML = confirmationText;
-		confirmationElement.classList.add('visible');
-		setTimeout(function () {
-			confirmationElement.classList.remove('visible');
-		}, 750); // Remove "visible" class after 750 ms
-		}).catch(function () {
-			console.error('Failed to copy to clipboard');
+
+
+// Load characters dynamically
+
+const charactersContainer = document.querySelector( "#characters-container" );
+const loadingMessage = document.querySelector( "#loading-message" );
+
+fetch( "characters.json" )
+	.then(response => response.json())
+	.then(characters => {
+		loadingMessage.style.display = "none";
+		charactersContainer.classList.remove( "loading" );
+
+		characters.forEach(character => {
+			const charElement = document.createElement("div");
+			charElement.classList.add("char");
+			if (character.searchTerm === "shrug") {
+				charElement.classList.add("shrug");
+			}
+			charElement.setAttribute("data-search-term", character.searchTerm);
+
+			const charButton = document.createElement("button");
+			charButton.classList.add("char-button");
+			charButton.setAttribute("data-clipboard-text", character.clipboardText);
+			charButton.innerHTML = character.character;
+
+			charElement.appendChild(charButton);
+			charactersContainer.appendChild(charElement);
 		});
 	});
+
+
+// Copy characters to clipboard
+charactersContainer.addEventListener("click", function(event) {
+	if (event.target.classList.contains("char-button")) {
+		var charText = event.target.getAttribute("data-clipboard-text");
+		navigator.clipboard
+			.writeText(charText)
+			.then(function() {
+				var confirmationText =
+				'<span class="character">' +
+				charText +
+				'</span><span class="message"> copied to clipboard</span>';
+		  		var confirmationElement = document.getElementById("confirmation-message");
+		  		var confirmationInnerElement = confirmationElement.querySelector(
+				".copy-confirmation-inner"
+			);
+			confirmationInnerElement.innerHTML = confirmationText;
+			confirmationElement.classList.add("visible");
+			setTimeout(function() {
+				confirmationElement.classList.remove("visible");
+				}, 750); // Remove "visible" class after 750 ms
+			})
+		.catch(function() {
+			console.error("Failed to copy to clipboard");
+		});
+	}
 });
 
 // Offline Mode
@@ -227,4 +265,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	window.addEventListener('online', updateOnlineStatus);
 	window.addEventListener('offline', updateOnlineStatus);
 	updateOnlineStatus();
+});
+
+// Clear Cache
+
+const clearCacheButton = document.querySelector( "#clear-cache-button" );
+
+clearCacheButton.addEventListener("click", function() {
+	caches.delete( "offline-cache" ).then(function() {
+		console.log("Cache cleared successfully");
+	});
 });

@@ -1,0 +1,202 @@
+[
+	{
+	  "character": "¯\\_(ツ)_/¯",
+	  "searchTerm": "shrug",
+	  "clipboardText": "¯\\_(ツ)_/¯"
+	},
+	{
+	  "character": "@",
+	  "searchTerm": "@ mail at",
+	  "clipboardText": "@"
+	},
+	{
+	  "character": "©",
+	  "searchTerm": "© copyright",
+	  "clipboardText": "&copy;"
+	},
+	{
+	  "character": "™",
+	  "searchTerm": "™ trademark tm",
+	  "clipboardText": "&trade;"
+	},
+	{
+	  "character": "®",
+	  "searchTerm": "® reg",
+	  "clipboardText": "&reg;"
+	},
+	{
+	  "character": "€",
+	  "searchTerm": "€ euro money currency",
+	  "clipboardText": "&euro;"
+	},
+	{
+	  "character": "$",
+	  "searchTerm": "$ dollar money currency",
+	  "clipboardText": "&dollar;"
+	},
+	{
+	  "character": "|",
+	  "searchTerm": "| pipe line",
+	  "clipboardText": "|"
+	},
+	{
+	  "character": "/",
+	  "searchTerm": "/ slash line",
+	  "clipboardText": "/"
+	},
+	{
+	  "character": "\\",
+	  "searchTerm": "\\ backslash slash line",
+	  "clipboardText": "\\"
+	},
+	{
+	  "character": "~",
+	  "searchTerm": "~ tilde around approximation",
+	  "clipboardText": "~"
+	},
+	{
+	  "character": "°",
+	  "searchTerm": "° celsius degree temperature",
+	  "clipboardText": "°"
+	},
+	{
+	  "character": "×",
+	  "searchTerm": "× multiply x",
+	  "clipboardText": "×"
+	},
+	{
+	  "character": "-",
+	  "searchTerm": "- hypen minus dash",
+	  "clipboardText": "-"
+	},
+	{
+	  "character": "–",
+	  "searchTerm": "– hypen ndash",
+	  "clipboardText": "&ndash;"
+	},
+	{
+	  "character": "—",
+	  "searchTerm": "— hypen mdash",
+	  "clipboardText": "&mdash;"
+	},
+	{
+	  "character": "½",
+	  "searchTerm": "½ half",
+	  "clipboardText": "½"
+	},
+	{
+	  "character": "¼",
+	  "searchTerm": "¼ quarter",
+	  "clipboardText": "¼"
+	},
+	{
+	  "character": "¾",
+	  "searchTerm": "¾ three quarter",
+	  "clipboardText": "¾"
+	},
+	{
+	  "character": "#",
+	  "searchTerm": "# hashtag hash number",
+	  "clipboardText": "#"
+	},
+	{
+	  "character": "%",
+	  "searchTerm": "% percent percentage discount",
+	  "clipboardText": "%"
+	},
+	{
+	  "character": "&",
+	  "searchTerm": "&amp; amp and",
+	  "clipboardText": "&amp;"
+	},
+	{
+	  "character": "'",
+	  "searchTerm": "' quote single",
+	  "clipboardText": "'"
+	},
+	{
+	  "character": "\"",
+	  "searchTerm": "&quot; quote double",
+	  "clipboardText": "&quot;"
+	},
+	{
+	  "character": "«",
+	  "searchTerm": "« quote arrow",
+	  "clipboardText": "«"
+	},
+	{
+		"character": "«",
+		"searchTerm": "« quote arrow",
+		"clipboardText": "«"
+	},
+	{
+		"character": "»",
+		"searchTerm": "» quote arrow",
+		"clipboardText": "»"
+	},
+	{
+		"character": "«»",
+		"searchTerm": "«» quote arrows",
+		"clipboardText": "«»"
+	},
+	{
+		"character": "‹",
+		"searchTerm": "‹ quote lsaquo arrow",
+		"clipboardText": "‹"
+	},
+	{
+		"character": "›",
+		"searchTerm": "› quote rsaquo arrow",
+		"clipboardText": "›"
+	},
+	{
+		"character": "+",
+		"searchTerm": "+ plus and",
+		"clipboardText": "+"
+	},
+	{
+		"character": "!",
+		"searchTerm": "! exclamation shout loud",
+		"clipboardText": "!"
+	},
+	{
+		"character": "?",
+		"searchTerm": "? question unsure what",
+		"clipboardText": "?"
+	},
+	{
+		"character": "(",
+		"searchTerm": "( parenthesis bracket opening",
+		"clipboardText": "("
+	},
+	{
+		"character": ")",
+		"searchTerm": ") parenthesis bracket closing",
+		"clipboardText": ")"
+	},
+	{
+		"character": "{",
+		"searchTerm": "{ brace bracket opening",
+		"clipboardText": "{"
+	},
+	{
+		"character": "}",
+		"searchTerm": "} brace bracket closing",
+		"clipboardText": "}"
+	},
+	{
+		"character": "[",
+		"searchTerm": "[ bracket opening",
+		"clipboardText": "["
+	},
+	{
+		"character": "]",
+		"searchTerm": "] bracket closing",
+		"clipboardText": "]"
+	},
+	{
+		"character": "•",
+		"searchTerm": ". • dot bullet",
+		"clipboardText": "•"
+	}
+]

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'offline-cache-v2';
+const CACHE_NAME = 'offline-cache';
 const OFFLINE_URL = 'index.html';
 
 self.addEventListener('install', (event) => {
@@ -6,8 +6,9 @@ self.addEventListener('install', (event) => {
 		caches.open(CACHE_NAME).then((cache) => {
 			return cache.addAll([
 				OFFLINE_URL,
-				'styles.css?20240404B',
-				'functions.js?20240404B',
+				'styles.css?20240406',
+				'functions.js?20240406',
+				'characters.json',
 				'manifest.json',
 			]);
 		})
