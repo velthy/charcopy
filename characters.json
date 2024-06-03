@@ -11,28 +11,28 @@
 	},
 	{
 	  "character": "©",
-	  "searchTerm": "© copyright",
-	  "clipboardText": "&copy;"
+	  "searchTerm": "© copy copyright",
+	  "clipboardText": "©"
 	},
 	{
 	  "character": "™",
 	  "searchTerm": "™ trademark tm",
-	  "clipboardText": "&trade;"
+	  "clipboardText": "™"
 	},
 	{
 	  "character": "®",
 	  "searchTerm": "® reg",
-	  "clipboardText": "&reg;"
+	  "clipboardText": "®"
 	},
 	{
 	  "character": "€",
 	  "searchTerm": "€ euro money currency",
-	  "clipboardText": "&euro;"
+	  "clipboardText": "€"
 	},
 	{
 	  "character": "$",
 	  "searchTerm": "$ dollar money currency",
-	  "clipboardText": "&dollar;"
+	  "clipboardText": "$"
 	},
 	{
 	  "character": "|",
@@ -72,12 +72,12 @@
 	{
 	  "character": "–",
 	  "searchTerm": "– hypen ndash",
-	  "clipboardText": "&ndash;"
+	  "clipboardText": "–"
 	},
 	{
 	  "character": "—",
 	  "searchTerm": "— hypen mdash",
-	  "clipboardText": "&mdash;"
+	  "clipboardText": "—"
 	},
 	{
 	  "character": "½",
@@ -107,7 +107,7 @@
 	{
 	  "character": "&",
 	  "searchTerm": "&amp; amp and",
-	  "clipboardText": "&amp;"
+	  "clipboardText": "&"
 	},
 	{
 	  "character": "'",
@@ -117,7 +117,7 @@
 	{
 	  "character": "\"",
 	  "searchTerm": "&quot; quote double",
-	  "clipboardText": "&quot;"
+	  "clipboardText": "\""
 	},
 	{
 	  "character": "«",
@@ -198,5 +198,15 @@
 		"character": "•",
 		"searchTerm": ". • dot bullet",
 		"clipboardText": "•"
+	},
+	{
+		"character": "=",
+		"searchTerm": "= equal same same-same",
+		"clipboardText": "="
+	},
+	{
+		"character": "≠",
+		"searchTerm": "= not not-equal equal",
+		"clipboardText": "≠"
 	}
 ]
