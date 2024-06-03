@@ -151,7 +151,6 @@ body {
 	margin: 0;
 	padding: 0;
 	background: var( --color__body );
-	transition: all var( --transition__default );
 }
 
 a {
